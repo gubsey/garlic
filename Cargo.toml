@@ -1,0 +1,9 @@
+[package]
+name = "garlic"
+version = "0.1.0"
+edition = "2024"
+repository = "https://github.com/gubsey/garlic"
+license = "MIT"
+description = "A collection of random side projects"
+
+[dependencies]
