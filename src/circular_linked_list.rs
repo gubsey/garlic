@@ -80,7 +80,7 @@ impl<T> CircularLinkedList<T> {
         self.tail = next_ptr.clone();
     }
 
-    /// Creates an iterator that, by default, 
+    /// Creates an iterator that, by default,
     /// will never end, unless the list is empty.
     pub fn iter(&self) -> CllIter<T> {
         CllIter {
@@ -90,10 +90,18 @@ impl<T> CircularLinkedList<T> {
         }
     }
 
-    /// Creates an iterator that, by default, 
+    /// Creates an iterator that, by default,
     /// will iterate throught the list and stop at the tail element.
     pub fn iter_once(&self) -> CllIter<T> {
         self.iter().once()
+    }
+}
+
+impl<T> Drop for CircularLinkedList<T> {
+    fn drop(&mut self) {
+        if let Some(rcrfn) = self.tail.as_mut() {
+            rcrfn.borrow_mut().next = None;
+        }
     }
 }
 
