@@ -13,7 +13,7 @@ RUN  /usr/bin/ssh-keygen -A
 RUN  useradd b3nt
 RUN  mkdir -p /home/b3nt/.ssh
 RUN  chmod -R 700 /home/b3nt/.ssh/
-RUN  chown -R b3nt:b3nt /home/vscode/
+RUN  chown -R b3nt:b3nt /home/b3nt/
 RUN  usermod -aG wheel b3nt
 RUN  echo '%wheel ALL=(ALL:ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN	 echo 'b3nt:1234' | chpasswd
@@ -30,4 +30,4 @@ RUN  sed -i -e 's/^UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
 CMD  ["/usr/sbin/sshd", "-D"]
 
 # Set default user
-USER  vscode
+USER  b3nt
